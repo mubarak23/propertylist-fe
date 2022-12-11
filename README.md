@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# PropertyList  Front end
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Property Listing User Stories
 
-## Available Scripts
+# USER STORY 1
+As an Admin,
+ i need to login
+So i need a signin page
+Acceptance Criteria
+- Frontend
+A login page should be created
+Admin should be able to sign in with email and password
+The credentials for signing in should be valid
 
-In the project directory, you can run:
+- Backend
+A login endpoint should be created -  POST /auth/signin
+The endpoint should accept email and password
+A database should be created 
+Set the role of Admin
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# USER STORY 2
+	
+As an property Own,
+ i need to login
+So i need a signin page
+Acceptance Criteria
+- Frontend
+A login page should be created
+Admin should be able to sign in with email and password
+The credentials for signing in should be valid
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+ - Backend
+A login endpoint should be created -  POST /auth/signin
+The endpoint should accept email and password
+A database should be created 
+Set the role of Owner
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# USER STORY 3
 
-### `npm run build`
+As an Admin i want to be able to 
+Approve new property
+Edit Property
+Add new property 
+Assign propery to an owner
+		
+	Acceptance Criteria
+ - Frontend
+A page with a list of property and Approved Action button
+A Page to add a new Property
+A Page to edit a property
+A page with a list of property and Assign to owner Action button 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-  Backend
+An approved property endpoint -  PATCH /property/approved/propertyId
+The endpoint to add a new property - POST /property/add
+the endpoint should accept the following
+Payload {userId, NameLocation,Description,Owner(userId),Size,Price,status, type(rent or sale), Amenities (json object), Details(json object)
+ }
+Endpoint to edit a property - PATCH /property/edit/propertyId
+ Endpoint to assign a property to an owner – PATCH /property/assign
+			Payload: {propertyId, userId}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# USER STORY 4
+As a property owner,
+ i need to be able to add a new property
+So i need an add property page
+Acceptance Criteria
 
-### `npm run eject`
+- Frontend
+Add Property page should be created
+Owner should be able all property Details as describe by the model
+The details should be vaildated
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Backend
+An endpoint should be created for adding new property -  POST /property/add
+The endpoint should accept  {userId, NameLocation,Description,Owner(userId),Size,Price,status, type(rent or sale), Amenities (json object), Details(json object)
+ }
+Store the property in the db and attach it to the right owner.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# USER STORY 6
+As an unregister User,
+ i need to be able to view property details
+So i need a page that show the full details of a property
+Acceptance Criteria
+- Frontend
+Property Details Page should be created
+Fetch the details and render it on the page
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Backend
+An endpoint that respond with full property details -  POST /property/${id}
+Accept property Id
+ }
