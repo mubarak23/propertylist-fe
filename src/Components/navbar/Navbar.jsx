@@ -1,6 +1,17 @@
 import React from 'react';
+import { useAuthContext } from '../../hooks/useAuthContext';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const { dispatch, user } = useAuthContext();
+  const navigate = useNavigate();
+  const handleClick = () => {
+    if (user) {
+      localStorage.removeItem('user');
+      dispatch({ type: 'LOGOUT' });
+      navigate('/');
+    }
+  };
   return (
     <div className='header'>
       <nav className='navbar nav-1'>
@@ -93,21 +104,33 @@ const Navbar = () => {
           <ul>
             <li>
               <a href='#'>
-                saved <i class='far fa-heart'></i>
+                saved <i className='far fa-heart'></i>
               </a>
             </li>
             <li>
               <a href='#'>
-                account <i class='fas fa-angle-down'></i>
+                account <i className='fas fa-angle-down'></i>
               </a>
-              <ul>
-                <li>
-                  <a href='login.html'>login</a>
-                </li>
-                <li>
-                  <a href='register.html'>register</a>
-                </li>
-              </ul>
+
+              {user ? (
+                <ul>
+                  <li>
+                    <Link to='/profile'>Profile</Link>
+                  </li>
+                  <li>
+                    <a onClick={handleClick}>Logout</a>
+                  </li>
+                </ul>
+              ) : (
+                <ul>
+                  <li>
+                    <Link to='/login'>Login</Link>
+                  </li>
+                  <li>
+                    <Link to='/register'>Register</Link>
+                  </li>
+                </ul>
+              )}
             </li>
           </ul>
         </section>
